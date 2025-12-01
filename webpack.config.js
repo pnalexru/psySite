@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
 	entry: './src/scripts/main.js',
@@ -17,17 +18,42 @@ module.exports = {
 		open: true,
 	},
 	plugins: [
+		// Главная страница
 		new HtmlWebpackPlugin({
 			template: './src/pages/index.html',
 			filename: 'index.html',
+			inject: 'body',
+		}),
+
+		// Другие страницы
+		new HtmlWebpackPlugin({
+			template: './src/pages/about.html',
+			filename: 'about.html',
+			inject: 'body',
+		}),
+		new HtmlWebpackPlugin({
+			template: './src/pages/services.html',
+			filename: 'services.html',
+			inject: 'body',
+		}),
+		new HtmlWebpackPlugin({
+			template: './src/pages/blog.html',
+			filename: 'blog.html',
+			inject: 'body',
+		}),
+		new HtmlWebpackPlugin({
+			template: './src/pages/contacts.html',
+			filename: 'contacts.html',
+			inject: 'body',
+		}),
+
+		// Копируем статические файлы
+		new CopyPlugin({
+			patterns: [{ from: 'src/assets', to: 'assets' }],
 		}),
 	],
 	module: {
 		rules: [
-			{
-				test: /\.css$/i,
-				use: ['style-loader', 'css-loader'],
-			},
 			{
 				test: /\.s[ac]ss$/i,
 				use: ['style-loader', 'css-loader', 'sass-loader'],

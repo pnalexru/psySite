@@ -6,7 +6,9 @@
 	"scripts": {
 		"start": "webpack serve --mode development --open",
 		"build": "webpack --mode production",
-		"dev": "webpack --mode development"
+		"predeploy": "npm run build && npm run copy-to-docs",
+		"deploy": "gh-pages -d docs",
+		"copy-to-docs": "mkdir -p docs && cp -r dist/* docs/"
 	},
 	"repository": {
 		"type": "git",
@@ -18,16 +20,17 @@
 	"bugs": {
 		"url": "https://github.com/pnalexru/psySite/issues"
 	},
-	"homepage": "https://github.com/pnalexru/psySite#readme",
+	"homepage": "https://pnalexru.github.io/psySite/",
 	"devDependencies": {
-		"css-loader": "^7.1.2",
+		"copy-webpack-plugin": "^11.0.0",
+		"css-loader": "^6.11.0",
+		"gh-pages": "^6.3.0",
 		"html-webpack-plugin": "^5.6.5",
 		"sass": "^1.94.2",
-		"sass-loader": "^16.0.6",
-		"style-loader": "^4.0.0",
+		"sass-loader": "^13.3.3",
+		"style-loader": "^3.3.4",
 		"webpack": "^5.103.0",
-		"webpack-cli": "^6.0.1",
-		"webpack-dev-server": "^5.2.2"
-	},
-	"dependencies": {}
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^4.15.2"
+	}
 }

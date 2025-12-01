@@ -1,4 +1,4 @@
-/* Базовые стилы */
+// Основные стили (сохраняем из предыдущего шага)
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +9,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -17,17 +20,21 @@ body {
   padding: 0 20px;
 }
 
-/* Header */
+// Header и навигация
 .header {
   background: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -35,6 +42,7 @@ body {
   align-items: center;
   text-decoration: none;
   color: #4a6fa5;
+  font-size: 20px;
 
   &__icon {
     font-size: 24px;
@@ -44,7 +52,6 @@ body {
   &__text {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 20px;
   }
 }
 
@@ -52,6 +59,18 @@ body {
   display: flex;
   list-style: none;
   gap: 30px;
+  margin: 0 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    display: none;
+
+    &.active {
+      display: flex;
+    }
+  }
 }
 
 .nav__link {
@@ -59,6 +78,7 @@ body {
   color: #555;
   font-weight: 500;
   transition: color 0.3s;
+  padding: 5px 0;
 
   &:hover {
     color: #4a6fa5;
@@ -66,11 +86,11 @@ body {
 
   &.active {
     color: #4a6fa5;
-    font-weight: 600;
+    border-bottom: 2px solid #4a6fa5;
   }
 }
 
-/* Кнопки */
+// Кнопки
 .btn {
   padding: 12px 24px;
   border: none;
@@ -79,6 +99,8 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
 
   &--primary {
     background: #4a6fa5;
@@ -86,6 +108,7 @@ body {
 
     &:hover {
       background: #3a5a85;
+      transform: translateY(-2px);
     }
   }
 
@@ -94,24 +117,26 @@ body {
     font-size: 18px;
     background: #4a6fa5;
     color: white;
-
-    &:hover {
-      background: #3a5a85;
-    }
+    margin-top: 20px;
   }
 }
 
-/* Hero секция */
+// Hero секция
 .hero {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 100px 0;
   text-align: center;
+  flex-grow: 1;
 
   &__title {
     font-family: 'Montserrat', sans-serif;
     font-size: 48px;
     margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+      font-size: 36px;
+    }
   }
 
   &__subtitle {
@@ -123,11 +148,79 @@ body {
   }
 }
 
-/* Footer */
+// Преимущества
+.advantages {
+  padding: 80px 0;
+
+  .section-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #333;
+  }
+}
+
+.advantages__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.advantage-card {
+  text-align: center;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+
+  &__icon {
+    font-size: 48px;
+    color: #4a6fa5;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  p {
+    color: #666;
+  }
+}
+
+// Footer
 .footer {
   background: #333;
   color: white;
   text-align: center;
   padding: 30px 0;
-  margin-top: 50px;
+  margin-top: auto;
+
+  p {
+    margin: 5px 0;
+  }
+}
+
+// Основной контент
+.main {
+  flex-grow: 1;
+  padding: 40px 0;
+
+  .container {
+    max-width: 800px;
+  }
+
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333;
+  }
 }
